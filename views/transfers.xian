@@ -1,0 +1,60 @@
+{{> shell-top}}
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Transfer Management</div>
+    <div class="page-subtitle">Review transfer requests and record Warden decisions.</div>
+  </div>
+  <a href="/transfers/new" class="btn-primary">+ New Request</a>
+</div>
+
+<div class="panel">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>PDL</th>
+          <th>Destination</th>
+          <th>Reason</th>
+          <th>Date</th>
+          <th>Status</th>
+          <th>Warden Review</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each transfers}}
+        <tr>
+          <td>
+            <div style="font-weight:700;color:#1d4ed8">{{PDL.pdlNumber}}</div>
+            <div style="font-size:0.78rem;color:#64748b">{{PDL.firstName}} {{PDL.lastName}}</div>
+          </td>
+          <td style="font-weight:500">{{destinationFacility}}</td>
+          <td style="max-width:200px;color:#475569;font-size:0.82rem">{{transferReason}}</td>
+          <td>{{formatDate requestDate}}</td>
+          <td><span class="status">{{status}}</span></td>
+          <td>
+            {{#if (eq status "Pending")}}
+            <form method="POST" action="/transfers/{{id}}/review" class="space-y-2" style="min-width:180px">
+              <textarea name="wardenRemarks" class="field" placeholder="Remarks (required)" required style="min-height:60px;font-size:0.78rem"></textarea>
+              <div class="flex gap-1">
+                <button name="decision" value="Approved" class="btn-small" style="background:#15803d;flex:1">Approve</button>
+                <button name="decision" value="Rejected" class="btn-small" style="background:#b91c1c;flex:1">Reject</button>
+              </div>
+            </form>
+            {{else}}
+            <div style="font-size:0.78rem;color:#64748b">
+              <div style="font-weight:600;color:#334155;margin-bottom:0.2rem">{{reviewedBy}}</div>
+              {{wardenRemarks}}
+            </div>
+            {{/if}}
+          </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="6" class="empty">No transfer requests found.</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{> shell-bottom}}

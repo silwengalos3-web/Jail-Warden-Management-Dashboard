@@ -1,0 +1,47 @@
+{{> shell-top}}
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Account Management</div>
+    <div class="page-subtitle">Authorized JailTrack system accounts. Account creation is restricted to deployment administrators.</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Created</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each staff}}
+        <tr>
+          <td style="font-weight:600;color:#0f172a">{{fullName}}</td>
+          <td style="color:#475569">{{email}}</td>
+          <td>
+            <span class="status" style="background:#ede9fe;color:#6d28d9;border-color:#ddd6fe">{{role}}</span>
+          </td>
+          <td>
+            {{#if isActive}}
+            <span class="status status-active">Active</span>
+            {{else}}
+            <span class="status status-closed">Inactive</span>
+            {{/if}}
+          </td>
+          <td style="color:#64748b">{{formatDate createdAt}}</td>
+        </tr>
+        {{else}}
+        <tr><td colspan="5" class="empty">No accounts found.</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{> shell-bottom}}

@@ -1,0 +1,16 @@
+{{> shell-top}}
+<div class="max-w-3xl panel"><h1 class="text-xl font-bold mb-5">Add PDL Record</h1>
+<form method="POST" action="/pdls" class="grid md:grid-cols-2 gap-4">
+<div><label class="field-label">PDL Number *</label><input class="field" name="pdlNumber" required></div>
+<div><label class="field-label">First Name *</label><input class="field" name="firstName" required></div>
+<div><label class="field-label">Middle Name</label><input class="field" name="middleName"></div>
+<div><label class="field-label">Last Name *</label><input class="field" name="lastName" required></div>
+<div><label class="field-label">Date of Birth</label><input class="field" type="date" name="dateOfBirth"></div>
+<div><label class="field-label">Admission Date *</label><input class="field" type="date" name="admissionDate" required></div>
+<div><label class="field-label">Case Number</label><input class="field" name="caseNumber"></div>
+<div><label class="field-label">Sentence Details</label><input class="field" name="sentenceDetails"></div>
+<div><label class="field-label">Expected Release Date</label><input class="field" type="date" name="expectedReleaseDate"></div>
+<div><label class="field-label">Assigned Cell / Dormitory</label><input class="field" name="assignedCell"></div>
+<div class="md:col-span-2 flex gap-2"><button class="btn-primary">Save Record</button><a href="/pdls" class="btn-secondary">Cancel</a></div>
+</form></div>
+{{> shell-bottom}}

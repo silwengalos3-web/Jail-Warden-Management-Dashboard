@@ -1,0 +1,22 @@
+{{> head}}
+<div class="min-h-screen flex">
+{{> sidebar}}
+<main class="flex-1 min-w-0 flex flex-col">
+  <header class="topbar">
+    <div>
+      <div class="topbar-title">{{title}}</div>
+      <div class="topbar-sub">Bansud District Jail — Facility Management System</div>
+    </div>
+    <div class="topbar-right">
+      <div class="topbar-user">
+        <div class="topbar-avatar">{{initials currentUser.fullName}}</div>
+        <span>{{currentUser.fullName}}</span>
+      </div>
+      <form method="POST" action="/logout">
+        <button class="btn-signout">Sign out</button>
+      </form>
+    </div>
+  </header>
+  <section class="p-6 max-w-7xl mx-auto w-full flex-1">
+    {{#if success}}<div class="notice-success">{{#each success}}<div>{{this}}</div>{{/each}}</div>{{/if}}
+    {{#if error}}<div class="notice-error">{{#each error}}<div>{{this}}</div>{{/each}}</div>{{/if}}

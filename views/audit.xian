@@ -1,0 +1,43 @@
+{{> shell-top}}
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Audit Trail</div>
+    <div class="page-subtitle">Complete log of all actions recorded by the system.</div>
+  </div>
+</div>
+
+<div class="panel">
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Date & Time</th>
+          <th>Actor</th>
+          <th>Action</th>
+          <th>Record</th>
+          <th>Details</th>
+          <th>IP Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each logs}}
+        <tr>
+          <td style="white-space:nowrap;color:#64748b;font-size:0.78rem">{{formatDate createdAt}}</td>
+          <td style="font-weight:600;color:#0f172a">{{actorName}}</td>
+          <td>
+            <span class="status" style="background:#f0fdf4;color:#15803d;border-color:#bbf7d0">{{action}}</span>
+          </td>
+          <td style="font-size:0.78rem;color:#475569">{{entityType}} <span style="font-weight:700;color:#1d4ed8">#{{entityId}}</span></td>
+          <td style="font-size:0.78rem;color:#475569;max-width:200px">{{details}}</td>
+          <td style="font-size:0.75rem;color:#94a3b8;font-family:monospace">{{ipAddress}}</td>
+        </tr>
+        {{else}}
+        <tr><td colspan="6" class="empty">No audit activity recorded yet.</td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{{> shell-bottom}}

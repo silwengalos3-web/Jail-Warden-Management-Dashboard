@@ -1,0 +1,8 @@
+{{> shell-top}}
+<div class="panel max-w-3xl"><div class="flex justify-between items-start"><div><p class="text-xs text-slate-500">PDL NUMBER</p><h1 class="text-2xl font-bold">{{pdl.pdlNumber}}</h1><p class="text-slate-600">{{pdl.firstName}} {{pdl.middleName}} {{pdl.lastName}}</p></div><span class="status">{{pdl.status}}</span></div>
+<div class="grid md:grid-cols-2 gap-4 mt-6 text-sm">
+<div><span class="field-label">Date of Birth</span>{{formatDate pdl.dateOfBirth}}</div><div><span class="field-label">Admission Date</span>{{formatDate pdl.admissionDate}}</div><div><span class="field-label">Case Number</span>{{pdl.caseNumber}}</div><div><span class="field-label">Sentence</span>{{pdl.sentenceDetails}}</div><div><span class="field-label">Expected Release</span>{{formatDate pdl.expectedReleaseDate}}</div><div><span class="field-label">Assigned Cell</span>{{pdl.assignedCell}}</div>
+</div>
+<hr class="my-6"><h2 class="font-semibold mb-3">Update PDL Status</h2>
+<form method="POST" action="/pdls/{{pdl.id}}/status" class="flex flex-wrap gap-2"><select class="field max-w-xs" name="status"><option>Active</option><option>Transferred</option><option>Released</option></select><button class="btn-primary">Update Status</button></form>
+</div>{{> shell-bottom}}

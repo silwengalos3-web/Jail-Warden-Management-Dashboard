@@ -1,0 +1,11 @@
+{{> shell-top}}
+<div class="panel max-w-2xl"><h1 class="text-xl font-bold mb-5">Record Incident</h1>
+<form method="POST" action="/incidents" class="space-y-4">
+<div><label class="field-label">Incident Title *</label><input class="field" name="title" required></div>
+<div><label class="field-label">Incident Type</label><select class="field" name="type"><option>Altercation</option><option>Escape Attempt</option><option>Contraband</option><option>Medical Emergency</option><option>Property Damage</option><option>Security Violation</option><option>Other</option></select></div>
+<div><label class="field-label">Date and Time *</label><input class="field" type="datetime-local" name="incidentDate" required></div>
+<div><label class="field-label">Location</label><input class="field" name="location"></div>
+<div><label class="field-label">Persons Involved</label><textarea class="field" name="personsInvolved"></textarea></div>
+<div><label class="field-label">Description *</label><textarea class="field" name="description" rows="4" required></textarea></div>
+<div class="flex gap-2"><button class="btn-primary">Save Incident</button><a href="/incidents" class="btn-secondary">Cancel</a></div>
+</form></div>{{> shell-bottom}}

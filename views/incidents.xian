@@ -1,0 +1,49 @@
+{{> shell-top}}
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Incident Management</div>
+    <div class="page-subtitle">Review reported incidents and document investigation outcomes.</div>
+  </div>
+  <a href="/incidents/new" class="btn-primary">+ Record Incident</a>
+</div>
+
+<div class="space-y-4">
+  {{#each incidents}}
+  <div class="panel">
+    <div class="flex flex-wrap justify-between gap-3 mb-3">
+      <div>
+        <div style="font-size:0.72rem;color:#94a3b8;font-weight:600;letter-spacing:0.04em;text-transform:uppercase;margin-bottom:0.3rem">
+          {{referenceNumber}} &nbsp;·&nbsp; {{formatDate incidentDate}}
+        </div>
+        <h2 style="font-size:1.05rem;font-weight:700;color:#0f172a;margin-bottom:0.2rem">{{title}}</h2>
+        <div style="font-size:0.78rem;color:#64748b">{{type}} &nbsp;·&nbsp; {{location}}</div>
+      </div>
+      <span class="status">{{status}}</span>
+    </div>
+
+    <p style="font-size:0.85rem;color:#334155;line-height:1.6;margin-bottom:0.75rem">{{description}}</p>
+    <div style="font-size:0.75rem;color:#94a3b8;margin-bottom:1rem">
+      <strong style="color:#64748b">Persons involved:</strong> {{personsInvolved}}
+    </div>
+
+    <div style="border-top:1px solid #f1f5f9;padding-top:1rem">
+      <div style="font-size:0.72rem;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:0.75rem">Warden Review</div>
+      <form method="POST" action="/incidents/{{id}}/review" class="grid md:grid-cols-3 gap-3">
+        <select class="field" name="status">
+          <option>Under Review</option>
+          <option>Resolved</option>
+          <option>Closed</option>
+        </select>
+        <input class="field" name="investigationFindings" placeholder="Investigation findings">
+        <input class="field" name="wardenRemarks" placeholder="Warden remarks">
+        <button class="btn-primary md:col-span-3">Save Review</button>
+      </form>
+    </div>
+  </div>
+  {{else}}
+  <div class="panel empty">No incident reports recorded.</div>
+  {{/each}}
+</div>
+
+{{> shell-bottom}}

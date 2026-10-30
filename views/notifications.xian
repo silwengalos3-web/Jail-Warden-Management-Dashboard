@@ -1,0 +1,25 @@
+{{> shell-top}}
+
+<div class="page-header">
+  <div>
+    <div class="page-title">Notifications</div>
+    <div class="page-subtitle">System notices and administrative alerts.</div>
+  </div>
+</div>
+
+<div class="space-y-3">
+  {{#each notifications}}
+  <div class="panel" style="border-left:3px solid #3b82f6">
+    <div class="flex flex-wrap justify-between gap-2 mb-2">
+      <strong style="color:#0f172a;font-size:0.9rem">{{title}}</strong>
+      <span class="status">{{category}}</span>
+    </div>
+    <p style="font-size:0.85rem;color:#475569;line-height:1.6;margin-bottom:0.5rem">{{message}}</p>
+    <p style="font-size:0.72rem;color:#94a3b8">{{formatDate createdAt}}</p>
+  </div>
+  {{else}}
+  <div class="panel empty">No notifications at this time.</div>
+  {{/each}}
+</div>
+
+{{> shell-bottom}}
